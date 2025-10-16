@@ -1,8 +1,8 @@
-// Function to toggle between light and dark themes
+
 const themeToggleBtn = document.getElementById('theme-toggle');
 const themeStylesheet = document.getElementById('theme-stylesheet');
 
-// Check and apply stored theme preference
+
 function checkAndApplyTheme() {
   const storedTheme = localStorage.getItem('theme');
   
@@ -15,11 +15,11 @@ function checkAndApplyTheme() {
   }
 }
 
-// Toggle the theme and save preference in localStorage
+
 themeToggleBtn.addEventListener('click', () => {
   const currentTheme = document.body.classList.contains('dark') ? 'dark' : 'light';
   
-  // Toggle between light and dark theme
+  
   if (currentTheme === 'light') {
     document.body.classList.add('dark');
     localStorage.setItem('theme', 'dark');
@@ -32,4 +32,5 @@ themeToggleBtn.addEventListener('click', () => {
 });
 
 // Apply theme when the page loads
+
 checkAndApplyTheme();
