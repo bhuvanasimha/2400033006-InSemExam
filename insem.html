@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Persistent Theme Toggle</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    /* Light Theme */
+    body.light {
+      background-color: #f5f5f5;
+      color: #222;
+    }
+
+    /* Dark Theme */
+    body.dark {
+      background-color: #222;
+      color: #f5f5f5;
+    }
+
+    .toggle-btn {
+      background: #4caf50;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      font-size: 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: background 0.3s;
+    }
+
+    .toggle-btn:hover {
+      background: #45a049;
+    }
+
+    h1 {
+      font-size: 2em;
+    }
+  </style>
+</head>
+<body>
+  <h1>🌗 Theme Toggle Example</h1>
+  <button id="theme-toggle" class="toggle-btn">Switch to Dark Mode</button>
+
+  <script>
+    const toggleBtn = document.getElementById('theme-toggle');
+    const body = document.body;
+
+    // Load saved theme from localStorage
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      body.classList.add(savedTheme);
+      updateButtonText(savedTheme);
+    } else {
+      body.classList.add('light'); // default theme
+    }
+
+    // Toggle theme and save to localStorage
+    toggleBtn.addEventListener('click', () => {
+      body.classList.toggle('dark');
+      body.classList.toggle('light');
+
+      const currentTheme = body.classList.contains('dark') ? 'dark' : 'light';
+      localStorage.setItem('theme', currentTheme);
+      updateButtonText(currentTheme);
+    });
+
+    function updateButtonText(theme) {
+      toggleBtn.textContent = theme === 'dark'
+        ? 'Switch to Light Mode'
+        : 'Switch to Dark Mode';
+    }
+  </script>
+</body>
+</html>
